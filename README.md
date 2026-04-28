@@ -1,4 +1,4 @@
-# 🎮 KingsMarket - API de E-commerce de Games
+# 🎮 KingsMarket
 
 Este é o back-end de uma plataforma de e-commerce robusta para o mercado de games. Desenvolvido com **Java Spring Boot**, o sistema gerencia um ecossistema complexo de jogos, categorias e desenvolvedoras, utilizando as melhores práticas de arquitetura REST e performance de dados.
 
