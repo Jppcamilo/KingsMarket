@@ -1,49 +1,76 @@
-# 🎮 KingsMarket - Loja Virtual de Jogos
+# 🎮 KingsMarket - API de E-commerce de Games
 
-Este é o back-end de uma plataforma de e-commerce voltada para o mercado de games. O projeto foi desenvolvido para gerenciar o inventário de jogos e desenvolvedoras, permitindo operações completas de CRUD (Create, Read, Update, Delete) através de uma API REST robusta.
+Este é o back-end de uma plataforma de e-commerce robusta para o mercado de games. Desenvolvido com **Java Spring Boot**, o sistema gerencia um ecossistema complexo de jogos, categorias e desenvolvedoras, utilizando as melhores práticas de arquitetura REST e performance de dados.
 
-## 🚀 Tecnologias Utilizadas
+## 🚀 Diferenciais Técnicos
 
-O projeto foi construído utilizando as melhores práticas de desenvolvimento Java:
+Diferente de um CRUD comum, este projeto implementa:
 
-* **Java 17** (ou a versão que você estiver usando)
-* **Spring Boot**: Framework principal para agilidade no desenvolvimento.
-* **Spring Data JPA**: Para persistência de dados de forma simplificada.
-* **Banco de Dados SQL**: Armazenamento relacional para jogos e desenvolvedoras.
-* **Lombok**: Para redução de código boilerplate (Getters, Setters, etc).
-* **Maven**: Gerenciador de dependências.
+* **Relacionamentos Dinâmicos:** Vinculação entre Jogos, Desenvolvedoras e Categorias (Gêneros).
+* **Interface Projections:** Consultas otimizadas que devolvem apenas o necessário para o front-end, reduzindo o consumo de banda.
+* **Paginação e Filtros:** Endpoints preparados para grandes volumes de dados com filtros por termo e preço.
+* **Tratamento de Exceções Global:** Sistema personalizado de mensagens de erro que retorna JSONs claros e amigáveis para o usuário.
+* **Validação de Dados:** Uso de *Bean Validation* para garantir a integridade das informações no banco de dados.
 
-## 🛠️ Arquitetura e Organização
+## 🛠️ Tecnologias Utilizadas
 
-O sistema segue o padrão de camadas para garantir a manutenção e escalabilidade:
+* **Java 17**
+* **Spring Boot 3.x**
+* **Spring Data JPA**: Persistência de dados eficiente.
+* **Oracle Database**: Banco de dados relacional de alto desempenho.
+* **Lombok**: Produtividade na criação de classes de modelo.
+* **Jakarta Validation**: Regras de negócio direto na camada de dados.
+* **Maven**: Gestão de dependências e automação de build.
 
-1.  **Controller**: Camada de entrada, onde os endpoints da API são definidos.
-2.  **Service**: Camada de lógica de negócio, isolando a regra do sistema.
-3.  **Repository**: Camada de acesso ao banco de dados utilizando JPA.
-4.  **Model/Entity**: Representação das tabelas do banco de dados.
+---
 
-## 📌 Funcionalidades Principais
+## 📂 Arquitetura do Sistema
 
-* [x] Cadastro e listagem de novos jogos.
-* [x] Gerenciamento de desenvolvedoras vinculadas aos títulos.
-* [x] Atualização de dados e remoção lógica ou física de registros.
-* [x] Validação de dados de entrada.
+A estrutura foi organizada seguindo o padrão de camadas para facilitar a escalabilidade:
 
-## 🔧 Como Executar o Projeto
+* **Controller**: Endpoints REST que gerenciam as requisições HTTP.
+* **Service**: O "coração" da aplicação, contendo as regras de negócio e validações.
+* **Repository**: Abstração da comunicação com o banco de dados.
+* **Model/Entity**: Definição das tabelas e relacionamentos JPA.
+* **Projections**: Interfaces para otimização de consultas (DTO).
+* **Exceptions**: Gerenciamento centralizado de erros da API.
+
+---
+
+## 🔗 Endpoints Principais
+
+### **Jogos**
+| Método | Endpoint | Descrição |
+| :--- | :--- | :--- |
+| `GET` | `/api/jogos` | Lista todos os jogos com detalhes completos. |
+| `GET` | `/api/jogos/buscar` | Busca paginada por termo (título) usando Projeção. |
+| `GET` | `/api/jogos/preco-maximo` | Filtra jogos por valor máximo. |
+| `POST` | `/api/jogos` | Cadastra um novo jogo (requer DevID e CatID). |
+| `PUT` | `/api/jogos/{id}` | Atualiza dados de um jogo existente. |
+| `DELETE` | `/api/jogos/{id}` | Remove um jogo do inventário. |
+
+### **Categorias e Desenvolvedoras**
+* Endpoints completos de CRUD disponíveis em `/api/categorias` e `/api/desenvolvedoras`.
+
+---
+
+## 🔧 Como Executar
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/LucasMatsubara/kingsMarket.git
+    git clone https://github.com/Jppcamilo/KingsMarket.git
     ```
-2.  **Configure o Banco de Dados:**
-    Ajuste as credenciais no arquivo `src/main/resources/application.properties`.
-3.  **Execute a aplicação:**
+2.  **Configuração do Banco:**
+    Atualize as credenciais do seu banco Oracle no arquivo `src/main/resources/application.properties`.
+3.  **Build e Run:**
     ```bash
+    mvn clean install
     mvn spring-boot:run
     ```
 
 ---
-Desenvolvido por: 
-👤 João Pedro Pereira Camilo | RM 562005
-👤 Lucas Matsubara Reis | RM 565020
-👤 Pamella Christiny Chaves Brito | RM 565206
+
+### 👥 Equipe de Desenvolvimento
+* **João Pedro Pereira Camilo** | RM 562005
+* **Lucas Matsubara Reis** | RM 565020
+* **Pamella Christiny Chaves Brito** | RM 565206
